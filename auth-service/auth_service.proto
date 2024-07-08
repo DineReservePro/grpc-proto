@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+option go_package = "generated/auth_service";
+
+package auth_service;
+
 service AuthService {
   rpc RegisterUser (RegisterRequest) returns (RegisterResponse);
   rpc LoginUser (LoginRequest) returns (LoginResponse);
