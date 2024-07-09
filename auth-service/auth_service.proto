@@ -7,6 +7,7 @@ package auth_service;
 service AuthService {
   rpc RegisterUser (RegisterRequest) returns (RegisterResponse);
   rpc LoginUser (LoginRequest) returns (LoginResponse);
+  rpc LogoutUser(LogoutRequest) returns (LogoutResponse);
   rpc GetUserProfile (GetUserProfileRequest) returns (GetUserProfileResponse);
   rpc UpdateUserProfile (UpdateUserProfileRequest) returns (UpdateUserProfileResponse);
 }
@@ -20,6 +21,7 @@ message RegisterRequest {
 
 message RegisterResponse {
   string message = 1;
+  string user_id = 2;
 }
 
 message LoginRequest {
@@ -28,7 +30,18 @@ message LoginRequest {
 }
 
 message LoginResponse {
-  string token = 1;
+  string user_id = 1;
+  string username = 2;
+  string email = 3;
+  string token = 4;
+}
+
+message LogoutRequest {
+  string user_id = 1;
+}
+
+message LogoutResponse {
+  string message = 1;
 }
 
 message GetUserProfileRequest {
@@ -36,15 +49,20 @@ message GetUserProfileRequest {
 }
 
 message GetUserProfileResponse {
-  string username = 1;
-  string email = 2;
-  string fullName = 3;
+  string fullname = 1;
+  string username = 2;
+  string date_of_birth = 3;
+  string phone_number = 4;
+  string address = 5;
 }
 
 message UpdateUserProfileRequest {
-  string username = 1;
-  string email = 2;
+  string user_id = 1;
+  string username = 2;
   string fullName = 3;
+  string date_of_birth = 4;
+  string phone_number = 5;
+  string address = 6;
 }
 
 message UpdateUserProfileResponse {
